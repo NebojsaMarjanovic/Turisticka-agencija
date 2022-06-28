@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "oyFMOD9+egfZGZtuexTXieXK9Qwd4uymv3nT+0BXfOeQNTddpMuaUt6XTpPuCIhabKG3UBg4lihCt2MGp5oyVw==",
+  "dgSpecHash": "kV8lkLOuUYwG2qFeSpt5D33PN1XS7vwew5QHMbvL5i+NA1zHJKS9jyQYtWDJvhxVx+bSbq4Ur0f7NQ/jMQ7+JA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Korisnik\\source\\repos\\backend\\TuristickaAgencijaIteh\\Domain.csproj",
+  "projectFilePath": "C:\\Users\\Korisnik\\Desktop\\Turisticka Agencija\\backend\\TuristickaAgencijaIteh\\Domain.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Korisnik\\.nuget\\packages\\humanizer.core\\2.8.26\\humanizer.core.2.8.26.nupkg.sha512",
     "C:\\Users\\Korisnik\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",

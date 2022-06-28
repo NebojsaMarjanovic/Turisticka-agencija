@@ -1,8 +1,8 @@
 {
   "version": 2,
-  "dgSpecHash": "+SFWJ5nHNipmHOr+or6VRH/pioRV1z43IEDI+wPj3IdgraRavnH0SNx0/HFg+FWhwudtNgKgrctbCR/PEpm44g==",
+  "dgSpecHash": "EL9yNG05S8cu/b0F7m0sOv82SNhHklpq+CDzB5CSKrNHcsbcdkBLBvd1O3PUNICzTqJ9tY5h+bZ4mnhZAgeekA==",
   "success": true,
-  "projectFilePath": "C:\\Users\\Korisnik\\source\\repos\\backend\\TuristickaAgencijaAPI\\TuristickaAgencijaAPI.csproj",
+  "projectFilePath": "C:\\Users\\Korisnik\\Desktop\\Turisticka Agencija\\backend\\TuristickaAgencijaAPI\\TuristickaAgencijaAPI.csproj",
   "expectedPackageFiles": [
     "C:\\Users\\Korisnik\\.nuget\\packages\\microsoft.aspnet.identity.core\\2.2.3\\microsoft.aspnet.identity.core.2.2.3.nupkg.sha512",
     "C:\\Users\\Korisnik\\.nuget\\packages\\microsoft.aspnetcore.authentication\\2.2.0\\microsoft.aspnetcore.authentication.2.2.0.nupkg.sha512",

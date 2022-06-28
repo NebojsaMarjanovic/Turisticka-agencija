@@ -1,17 +1,17 @@
 {
   "format": 1,
   "restore": {
-    "C:\\Users\\Korisnik\\source\\repos\\backend\\TuristickaAgencijaIteh\\Domain.csproj": {}
+    "C:\\Users\\Korisnik\\Desktop\\Turisticka Agencija\\backend\\TuristickaAgencijaIteh\\Domain.csproj": {}
   },
   "projects": {
-    "C:\\Users\\Korisnik\\source\\repos\\backend\\TuristickaAgencijaIteh\\Domain.csproj": {
+    "C:\\Users\\Korisnik\\Desktop\\Turisticka Agencija\\backend\\TuristickaAgencijaIteh\\Domain.csproj": {
       "version": "1.0.0",
       "restore": {
-        "projectUniqueName": "C:\\Users\\Korisnik\\source\\repos\\backend\\TuristickaAgencijaIteh\\Domain.csproj",
+        "projectUniqueName": "C:\\Users\\Korisnik\\Desktop\\Turisticka Agencija\\backend\\TuristickaAgencijaIteh\\Domain.csproj",
         "projectName": "Domain",
-        "projectPath": "C:\\Users\\Korisnik\\source\\repos\\backend\\TuristickaAgencijaIteh\\Domain.csproj",
+        "projectPath": "C:\\Users\\Korisnik\\Desktop\\Turisticka Agencija\\backend\\TuristickaAgencijaIteh\\Domain.csproj",
         "packagesPath": "C:\\Users\\Korisnik\\.nuget\\packages\\",
-        "outputPath": "C:\\Users\\Korisnik\\source\\repos\\backend\\TuristickaAgencijaIteh\\obj\\",
+        "outputPath": "C:\\Users\\Korisnik\\Desktop\\Turisticka Agencija\\backend\\TuristickaAgencijaIteh\\obj\\",
         "projectStyle": "PackageReference",
         "fallbackFolders": [
           "D:\\Program Files (x86)\\Microsoft Visual Studio\\Shared\\NuGetPackages",
