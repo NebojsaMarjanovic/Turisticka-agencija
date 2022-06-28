@@ -35,7 +35,7 @@ namespace TuristickaAgencijaAPI
         {
 
             services.AddControllers().AddJsonOptions(x =>
-            x.JsonSerializerOptions.ReferenceHandler = null); 
+            x.JsonSerializerOptions.ReferenceHandler = null).AddXmlSerializerFormatters(); 
             services.AddScoped<IUnitOfWork, UnitOfWork>();
             services.AddScoped<IUnitOfWork, UnitOfWork>();
 
