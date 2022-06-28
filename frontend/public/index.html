@@ -1,0 +1,128 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    
+      <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/css/bootstrap.min.css" rel="stylesheet" integrity="sha384-EVSTQN3/azprG1Anm3QDgpJLIm9Nao0Yz1ztcQTwFspd3yD65VohhpuuCOmLASjC" crossorigin="anonymous">
+      <link rel="stylesheet" href="https://unpkg.com/leaflet@1.8.0/dist/leaflet.css"
+      integrity="sha512-hoalWLoI8r4UszCkZ5kL8vayOGVae1oxXe/2A4AO6J9+580uKHDO3JdHb7NzwwzK5xr/Fs0W40kiNHxM9vyTtQ=="
+      crossorigin=""/>
+      <script src="https://unpkg.com/leaflet@1.8.0/dist/leaflet.js"
+      integrity="sha512-BB3hKbKWOc9Ez/TAwyWxNXeoV9c1v6FIeYiBieIWkpLjauysF18NzgR1MBNBXf8/KABdlkX68nAhlwcDFLGPCQ=="
+      crossorigin=""></script>
+      
+    </head>
+
+    <!-- <script type="text/javascript" src="/path/to/jquery-latest.js"></script>
+      <script type="text/javascript" src="/path/to/jquery.tablesorter.js"></script>  -->
+
+    <body>
+      <noscript>You need to enable JavaScript to run this app.</noscript>
+      <div id="root"></div>
+  
+
+      <!-- <script
+      src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCp2TeN4jSXWRV1JHlwiP6cbj-jiikvR9M&callback=initMap&v=weekly&language=sr&region=SR"
+      async
+    ></script> -->
+      
+      
+      <script src="https://cdn.jsdelivr.net/npm/bootstrap@5.0.2/dist/js/bootstrap.bundle.min.js" integrity="sha384-MrcW6ZMFYlzcLA8Nl+NtUVF0sA7MsXsP1UyJoMp4YLEuNSfAP+JcXn/tWtIaxVXM" crossorigin="anonymous"></script>
+    </body>
+
+    <script>
+     
+
+      function sortirajOpadajuce(e) {
+      var tabela1, redovi1, promena1, i1, x1, y1, menjaj1;
+      tabela1 = document.getElementById("myTable");
+      promena1 = true;
+      while (promena1) {
+        promena1 = false;
+        redovi1 = tabela1.rows;
+        for (i1 = 1; i1 < (redovi1.length - 1); i1++) {
+          menjaj1 = false;
+          x1 = redovi1[i1].getElementsByTagName("TD")[0];
+          y1 = redovi1[i1 + 1].getElementsByTagName("TD")[0];
+          if (x1.innerHTML.toLowerCase() > y1.innerHTML.toLowerCase()) {
+            menjaj1 = true;
+            break;
+          }
+        }
+        if (menjaj1) {
+          redovi1[i1].parentNode.insertBefore(redovi1[i1 + 1], redovi1[i1]);
+          promena1 = true;
+        }
+      }
+    }
+    
+    
+    function funkcijaZaPretragu() {
+                var input, filter, table, tr, td, i, txtValue;
+                input = document.getElementById("myInput");
+                filter = input.value.toUpperCase();
+                table = document.getElementById("myTable");
+                tr = table.getElementsByTagName("tr");
+                for (i = 0; i < tr.length; i++) {
+                    td = tr[i].getElementsByTagName("td")[0];
+                    if (td) {
+                        txtValue = td.textContent || td.innerText;
+                        if (txtValue.toUpperCase().indexOf(filter) > -1) {
+                            tr[i].style.display = "";
+                        } else {
+                            tr[i].style.display = "none";
+                        }
+                    }
+                }
+            }
+    
+
+
+            // let map;
+            // document.addEventListener("DOMContentLoaded", () =>{
+            //   let s = document.createElement('script');
+            //   document.head.appendChild(s);
+            //   s.addEventListener("load", () => {
+            //     console.log("script is loaded")
+            //     map = new google.maps.Map(document.getElementById("map"), {
+            //       center:{
+            //         lat:44.7981,
+            //         lng:20.4691,
+            //       },
+            //       zoom:16,
+            //       mapTypeId: google.maps.MapTypeId.ROADMAP
+            //     });
+            //   });
+            //   s.src = `htttps://maps.googleapis.com/maps/api/js?key=AIzaSyCKYd34Pt-3-s6ZosJ3muiaOtjkNNpAV4A`;
+            // });
+
+            
+
+//             function initMap() {
+//             var map = new google.maps.Map(document.getElementById('map'), {
+//             center: { lat: 44.7981, lng: 20.4691 },
+//             zoom: 17,
+//             });
+//  }
+
+
+//  function initMap(e){
+//    var options = {
+//      zoom : 17,
+//      center: { lat: 44.7981, lng: 20.4691 }
+//    }
+//    var map = new google.maps.Map(document.getElementById('map'), options);
+
+//    var marker = new google.maps.Marker({
+//      position:{lat: 44.7992, lng: 20.4695},
+//      map : map
+//    })
+
+//    var trafficLayer = new google.maps.TrafficLayer();
+//    trafficLayer.setMap(map);
+//  }
+
+
+    
+      </script>
+
+</html>
