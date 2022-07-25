@@ -1,21 +1,24 @@
 import React from 'react';
 
-import {IoAirplaneSharp } from 'react-icons/io5';
+import {IoIosWine } from 'react-icons/io';
 
 import { FiMoreHorizontal } from 'react-icons/fi';
 import { VscChromeClose } from 'react-icons/vsc';
 import { useState } from 'react';
 import axios from 'axios';
+import Cookies from 'universal-cookie';
 
 
 function JedanGrad({ grad, rezervisiGrad }) {
 	const [ opisGrada, setOpisGrada ] = useState('');
 	const [ i, seti ] = useState(0);
-
+	const cookies = new Cookies();
 	const [ podaciGrada, setPodaciGrada ] = useState({
 		korisnikId:'',
 		gradId:'',
 	});
+
+
 
 	function prikaziOpis() {
 		if (i % 2 == 0) {
@@ -32,18 +35,31 @@ function JedanGrad({ grad, rezervisiGrad }) {
 	
 
 	
-	function rezervisiGrad(grad){
-		setPodaciGrada(podaciGrada.korisnikId=window.sessionStorage.getItem('id'),
-		podaciGrada.gradId=grad.gradId)
+	// function rezervisiGrad(grad){
+
+	// 	if(cookies.get(grad.gradId)!=null){
+	// 	setPodaciGrada(podaciGrada.korisnikId=window.sessionStorage.getItem('id'),
+	// 	podaciGrada.gradId=grad.gradId)
+		
+	// 	const rezervisani=cookies.get("rezervisani");
+
+	// 	cookies.set(grad.gradId, grad);
+	// 	console.log(cookies.getAll());
+
+	// 	}
+	// 	else{
+	// 		window.alert("Grad je vec rezervisan!");
+	// 	}
 		
 
-		axios
-			.post('https://localhost:44321/api/Rezervacije', podaciGrada)
-			.then((res) => {
-				console.log(res.data);
-			})
-			// .catch((e) => window.alert('Neuspesna registracija, proverite da li uneti kredencijali zadovoljavaju data ogranicenja'));
-		}
+	// 	// axios
+	// 	// 	.post('https://localhost:44321/api/Rezervacije', podaciGrada)
+	// 	// 	.then((res) => {
+	// 	// 		console.log(res.data);
+	// 	// 	})
+	// 	// 	// .catch((e) => window.alert('Neuspesna registracija, proverite da li uneti kredencijali zadovoljavaju data ogranicenja'));
+	// 	}
+	
 
 	return (
 		<div className="jedanGrad">
@@ -60,7 +76,7 @@ function JedanGrad({ grad, rezervisiGrad }) {
 				<div className="opisGrada">{opisGrada}</div>
 			</div>
 			<button className="btn3" onClick={() => {rezervisiGrad(grad)}}>
-				<IoAirplaneSharp />
+				<IoIosWine />
 			</button>
 
 

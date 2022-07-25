@@ -25,8 +25,8 @@ function FormaPrijava({ dodajToken }) {
 			.then((res) => {
 				console.log(res.data);
 				window.sessionStorage.setItem('auth_token', res.data.token);
-				window.sessionStorage.setItem('id',res.data.userId);
-				window.sessionStorage.setItem('userRole',res.data.userRole);
+				// window.sessionStorage.setItem('id',res.data.userId);
+				// window.sessionStorage.setItem('userRole',res.data.userRole);
 
 				// dodajToken(res.data.token); // Funkcija
 				navigateDestinacije('/turistickeDestinacije');

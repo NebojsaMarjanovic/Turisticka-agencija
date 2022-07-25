@@ -46,6 +46,7 @@ namespace TuristickaAgencijaAPI.Controllers
             var userExists = await userManager.FindByNameAsync(model.Username);
             if (userExists != null)
                 return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User already exists!" });
+            
             Klijent user = new Klijent()
             {
                 Email = model.Email,
@@ -57,22 +58,26 @@ namespace TuristickaAgencijaAPI.Controllers
                 
                 
             };
+
+            Claim claimRole = new Claim("role", UserRoles.User);
+            Claim claimUserName = new Claim("username", model.Username);
+            Claim claimUserId = new Claim("userId", user.Id);
+
+
             ////BAZA KLIJENT
             unitOfWork.KlijentRepository.Add(user);
             /////
 
             var result = await userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)
-            {
                 return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User creation failed! Please check user details and try again." });
-                if (!await roleManager.RoleExistsAsync(UserRoles.User))
-                    await roleManager.CreateAsync(new IdentityRole(UserRoles.User));
+              
+            
 
-                if (await roleManager.RoleExistsAsync(UserRoles.User))
-                {
-                    await userManager.AddToRoleAsync(user, UserRoles.User);
-                }
-            }
+            await userManager.AddClaimAsync(user, claimRole);
+            await userManager.AddClaimAsync(user, claimUserName);
+            await userManager.AddClaimAsync(user, claimUserId);
+
             ////BAZA KLIJENT
             unitOfWork.Save();
             /////
@@ -95,6 +100,11 @@ namespace TuristickaAgencijaAPI.Controllers
                 Ime = model.Ime,
                 Prezime = model.Prezime,
             };
+
+            Claim claimRole = new Claim("role", UserRoles.Admin);
+            Claim claimUserName = new Claim("username", model.Username);
+            Claim claimUserId = new Claim("userId", user.Id);
+
             ///BAZA ADMIN
             unitOfWork.AdminRepository.Add(user);
             
@@ -103,13 +113,12 @@ namespace TuristickaAgencijaAPI.Controllers
             var result = await userManager.CreateAsync(user, model.Password);
             if (!result.Succeeded)
                 return StatusCode(StatusCodes.Status500InternalServerError, new Response { Status = "Error", Message = "User creation failed! Please check user details and try again." });
-            if (!await roleManager.RoleExistsAsync(UserRoles.Admin))
-                await roleManager.CreateAsync(new IdentityRole(UserRoles.Admin));
-            
-            if (await roleManager.RoleExistsAsync(UserRoles.Admin))
-            {
-                await userManager.AddToRoleAsync(user, UserRoles.Admin);
-            }
+           
+
+            await userManager.AddClaimAsync(user, claimRole);
+            await userManager.AddClaimAsync(user, claimUserName);
+            await userManager.AddClaimAsync(user, claimUserId);
+
             unitOfWork.Save();
 
             return Ok(new Response { Status = "Success", Message = "User created successfully!" });
@@ -123,32 +132,25 @@ namespace TuristickaAgencijaAPI.Controllers
             var user = await userManager.FindByNameAsync(model.Username);
             if (user != null && await userManager.CheckPasswordAsync(user, model.Password))
             {
-                var userRoles = await userManager.GetRolesAsync(user);
-                AuthenticationClaims.authClaims = new List<Claim>
-            {
-                new Claim(ClaimTypes.Name, user.UserName),
-                new Claim(JwtRegisteredClaimNames.Jti, Guid.NewGuid().ToString()),
-            };
-                foreach (var userRole in userRoles)
-                {
-                    AuthenticationClaims.authClaims.Add(new Claim(ClaimTypes.Role, userRole));
-                }
+                var userClaims = await userManager.GetClaimsAsync(user);
+
+              
                 var authSigningKey = new SymmetricSecurityKey(Encoding.UTF8.GetBytes("OvoJeNekiStringZaJwtAutentifikaciju"));
                 var token = new JwtSecurityToken(
                 issuer: _configuration["JWT: ValidIssuer"],
                 audience: _configuration["JWT: ValidAudience"],
                 expires: DateTime.Now.AddHours(3),
-                claims: AuthenticationClaims.authClaims,
+                claims: userClaims,
                 signingCredentials: new SigningCredentials(authSigningKey, SecurityAlgorithms.HmacSha256)
                 );
                 var allRolesForUser = await userManager.GetRolesAsync(user);
 
                 return Ok(new
                 {
-                    userRole = allRolesForUser.SingleOrDefault(),
-                    userId = user.Id,
+                    //userRole = allRolesForUser.SingleOrDefault(),
+                    //userId = user.Id,
                     token = new JwtSecurityTokenHandler().WriteToken(token),
-                    expiration = token.ValidTo
+                    //expiration = token.ValidTo
                 }) ;
             }
             return Unauthorized();

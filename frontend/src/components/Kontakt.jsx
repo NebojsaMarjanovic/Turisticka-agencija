@@ -2,7 +2,7 @@ import React from 'react';
 import { MapContainer, TileLayer, Marker, Popup } from "react-leaflet";
 import {FiPhoneCall}  from "react-icons/fi";
 
-function Kontakt() {
+function Kontakt({decodeJwt}) {
 	// const [ isLoaded ] = useLoadScript({ googleMapsApiKey: 'AIzaSyCp2TeN4jSXWRV1JHlwiP6cbj-jiikvR9M' });
 
 	// function Map() {
@@ -13,6 +13,7 @@ function Kontakt() {
 	return (
 		<div className="kontaktInformacije">
 			<div className="kontaktTekst">
+				<button onClick={decodeJwt}></button>
 				<p className="kontaktPrviParagraf">
 					Ukoliko imate bilo kakvih pitanja ili vam je potrebna pomoć oko putovanja, kontaktirajte nas:
 					<br />

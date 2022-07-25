@@ -51,6 +51,7 @@ namespace DataAccessLayer.Implementations
 
         public void Update(Grad entity)
         {
+          
             context.Entry(entity).State = Microsoft.EntityFrameworkCore.EntityState.Modified;
         }
 

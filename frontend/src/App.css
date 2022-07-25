@@ -33,6 +33,13 @@
   font-size: 60px;
 }
 
+.logoNavBar img{
+  margin-top: 9px;
+  height: 150px;
+  width: 150px;
+  border-radius: 10px;
+}
+
 .stavka{
   padding-top: 10px;
   padding-left:20px;
@@ -446,3 +453,4 @@ table.tabelaDestinacije{
   
 
 }
+

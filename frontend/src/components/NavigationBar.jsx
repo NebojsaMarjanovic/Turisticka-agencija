@@ -3,6 +3,8 @@ import { Link } from 'react-router-dom';
 import { FaPaperPlane } from 'react-icons/fa';
 import { BsSearch } from 'react-icons/bs';
 import axios from "axios";
+import logo from "../img/Logo.jpg";
+
 function NavigationBar({ nav, token }) {
 
 	function handleLogout(){
@@ -16,8 +18,9 @@ function NavigationBar({ nav, token }) {
 	return (
 		<div className={nav === 1 ? 'navigationBar' : 'bottomBar'}>
 			{nav === 1 ? 
-			(<div className="logo">
-				<FaPaperPlane />
+			(<div className="logoNavBar">
+				{/* <FaPaperPlane /> */}
+				<img src={logo} alt=""/>
 			</div>) : (<></>) }
 			{/* <div className="logo">
 				<MdTravelExplore />

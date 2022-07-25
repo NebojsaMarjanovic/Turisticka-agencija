@@ -24,5 +24,7 @@ namespace Domain
         [JsonIgnore]
         public List<Rezervacija> Rezervacije { get; set; } = new List<Rezervacija>();
 
+        public bool jeRezervisan { get; set; }
+
     }
 }

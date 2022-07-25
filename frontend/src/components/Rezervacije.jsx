@@ -2,18 +2,18 @@ import React from 'react';
 import Dugme from './Dugme.jsx';
 import axios from 'axios';
 import { useState,useEffect } from 'react';
+import Cookies from 'universal-cookie';
 
 function Rezervacije({ gradoviRezervacije, ukupno,token }) {
-	
-	const[rezervacije, setRezervacije] = useState();
+	const cookies = new Cookies();
+	const[rezervacije, setRezervacije] = useState(cookies.get("rezervisaniGradovi"));
 	useEffect(() => {
+		console.log(cookies.get("rezervisaniGradovi"));
+
 		  if(rezervacije == null){
-			  axios.get('https://localhost:44321/api/Rezervacije/'+window.sessionStorage.getItem('id')).then((res) => {
-				  console.log(res.data);
-				  setRezervacije(res.data);
-			  });
+			setRezervacije(cookies.get("rezervisaniGradovi"));
 		  }
-	  }, [rezervacije])
+	  }, [rezervacije]);
 
 	return (
 		
@@ -28,13 +28,11 @@ function Rezervacije({ gradoviRezervacije, ukupno,token }) {
 							<th>Cena</th>
 	
 		</tr>
-		
-							
-						{ rezervacije == null ? <></> : rezervacije.map((rezervacija) => (
+					{ rezervacije == null ? <></> : rezervacije.map((rezervacija) => (
 						<tr>
 							
-							<td>{rezervacija.grad.naziv}</td>
-							<td>{rezervacija.grad.cena}</td>
+							<td>{rezervacija.naziv}</td>
+							<td>{rezervacija.cena}</td>
 						</tr>
 						))}
 							

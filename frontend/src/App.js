@@ -13,6 +13,8 @@ import Kontakt from './components/Kontakt';
 import UpravljajRezervacijama from './components/UpravljajRezervacijama';
 import UpravljajDestinacijama from './components/UpravljajDestinacijama';
 import axios from 'axios';
+import jwt_decode from "jwt-decode";
+import Cookies from 'universal-cookie';
 
 
 
@@ -20,6 +22,12 @@ function App() {
 
 const [rezervisaniGrad, setRezervisaniGrad] = useState([]);
 const [ ukupno, setUkupno ] = useState(0);
+const [decodedToken, setDecodedToken] = useState();
+const cookies = new Cookies();
+
+console.log(cookies.get("rezervisaniGradovi"));
+cookies.set("rezervisaniGradovi", cookies.get("rezervisaniGradovi"));
+
 
 
   const[gradoviBaza, setGradoviBaza] = useState();
@@ -27,24 +35,44 @@ const [ ukupno, setUkupno ] = useState(0);
 		if(gradoviBaza == null){
 			axios.get('https://localhost:44321/Grad').then((res) => {
 				setGradoviBaza(res.data);
+        console.log(res.data);
 			});
 		}
 	}, [gradoviBaza])
 
-
-  function refresh(){
-    let noviGradovi = gradoviBaza.filter((grad) => grad.broj > 0);
-    setRezervisaniGrad(noviGradovi);
-  }
-
-  function dodajGrad(){
+  const refresh = (grad) => {
    
-    
-      
-    
-    
-    // refresh();
+  };
+ 
+
+function upisiUCookie(){
+  let noviGradovi = gradoviBaza.filter((grad) => grad.jeRezervisan === true);
+  cookies.set('rezervisaniGradovi', noviGradovi, {    maxAge: 1000000  });
+  console.log(cookies.get('rezervisaniGradovi')); 
+
+}
+
+  function dodajRezervisanGrad(grad){
+    if(grad.jeRezervisan===false){
+    grad.jeRezervisan=true;
+    }
+    upisiUCookie();
   }
+
+
+  // function rezervisiGrad(grad){
+  //    setRezervisaniGrad(oldArray => [...oldArray,grad]);
+
+  // }
+
+function decodeJwt(){
+    var token = window.sessionStorage.getItem("auth_token");
+    var decoded = jwt_decode(token);
+    setDecodedToken(decoded);
+    console.log(decodedToken);
+
+  }
+
 
   return (
     <BrowserRouter className="App">
@@ -71,7 +99,7 @@ const [ ukupno, setUkupno ] = useState(0);
   
       </div>
             <h1 className="naslov">Koji je vaš grad?</h1>
-            <Gradovi gradovi = {gradoviBaza} dodaj = {dodajGrad} />
+            <Gradovi gradovi = {gradoviBaza} rezervisiGrad = {dodajRezervisanGrad}/>
             </>
           }
         />
@@ -102,7 +130,7 @@ const [ ukupno, setUkupno ] = useState(0);
         element = {
           <>
         <NavigationBar nav = {1}></NavigationBar>
-          <Kontakt/>
+          <Kontakt decodeJwt={decodeJwt}/>
         </>
 
         }
@@ -122,7 +150,7 @@ const [ ukupno, setUkupno ] = useState(0);
         <Route
         path = "/prijava/"
         element = {
-          <FormaPrijava />
+          <FormaPrijava  />
         }
         />
         <Route
